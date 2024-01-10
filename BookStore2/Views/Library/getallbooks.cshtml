@@ -1,0 +1,29 @@
+﻿@model List<Books>
+<table class="table table-bordered">
+
+<tr>
+        <th> Name </th>
+        <th> Id </th>
+        <th> Author </th>
+        <th> Description </th>
+        <th> Image </th>
+
+
+</tr>    
+
+
+
+@foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Id</td>
+            <td>@item.Author</td>
+            <td>@item.Description</td>
+            <td><img src="/Images/@item.Image" width="200" height="200" /></td>
+            <td> <a asp-action="getbook" asp-controller="Library" asp-route-Id="@item.Id" class="btn-success"> Get Details</a>  </td>
+
+        </tr>
+    }
+</table>
+<a asp-action="Index" asp-controller="Home" class="btn-success"> Go To Home  </a>

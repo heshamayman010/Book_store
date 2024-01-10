@@ -1,0 +1,91 @@
+﻿
+@* the view bag contains the departments list 
+    ViewBag.depts
+the model is the list of the books that is in the department which i choosed by id 
+ *@
+
+
+@{
+    SelectList depts = new SelectList(Model, "Id", "Name");
+}
+
+
+<select asp-items="depts" name="depts" id="depts" onchange="DiplayALl()">
+
+    <option value="0">--- select one dept-----</option>
+
+</select>
+
+<div id="tttt">
+
+
+
+</div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<div id="ddd">
+
+
+
+</div>
+
+
+<script>
+    function DiplayALl() {
+        var stdID = document.getElementById("depts").value;
+        console.log(stdID);
+        $.ajax(
+            {
+                url: "/Library/getbook2/" ,
+                data: { "Id": stdID }
+                ,
+                success: function (result) {
+                    document.getElementById("ddd").innerHTML = " ";
+                    console.log(result);
+                    for (let item of result) { 
+                        document.getElementById("ddd").innerHTML +=
+                            " <li>" + item.name + "</li>";
+                    }
+                }
+            }
+        );
+    
+    
+    
+    }
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+<@* script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    function Getstudentsbyid() {
+                url: "/Courses/getstudentsbydepartments/",
+                data: { "deptid": deptId },
+                success: function (result) {
+                    console.log(result);
+                    document.getElementById("StdData").innerHTML = "";
+                    for (let std of result) {
+                        document.getElementById("StdData").innerHTML +=
+                            "<li>" + std.name + "</li>";
+                    }
+                }
+            }
+        );
+    }
+
+</script>
+ *@
